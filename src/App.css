@@ -1,0 +1,106 @@
+html,body{  
+  height: 100%;  
+}  
+.likebody{
+  height:100%
+}
+.App-login {
+  background:url(../src/image/login.png) no-repeat;
+  background-size: cover;
+  height: 100%;
+  width: 100%;
+}
+.welcome {
+  padding-top: 10%;
+  padding-left: 60%;
+  font-size:30px;
+  color:#FF33C7;
+}
+.center{
+  font-size: 18px;
+  color:white;
+  margin-top:12px;
+  text-align: center;
+}
+.message{
+  width:150px;
+  height:18px;
+  border-radius: 5px;
+  outline:none;
+  border:black solid 1px
+}
+
+.btn-success {
+  background-color: #306195;
+  border-color: #306195;
+  color: #FFFFFF;
+  font-size: 12px;
+  padding-left: 20px;
+  padding-right: 20px;
+  height: 38px;
+}
+.loginButton {
+  border: 0px;
+  opacity: 1;
+  background-color: #ff6b6b;
+  padding: 10px 35px;
+  border-radius: 8px;
+  outline: none;
+  transition: 0.5s;
+}
+
+.buttonText {
+  color: aliceblue;
+  cursor: pointer;
+  position: relative;
+  left: 0px;
+  transition: 0.5s;
+}
+
+.buttonText:after {
+    content: '>>';
+    position: absolute;
+    color: aliceblue;
+    opacity: 0;
+    top: 0;
+    left: 0px;
+    transition: 0.5s;
+}
+
+.loginButton:hover {
+  opacity: 0.8;
+}
+
+.loginButton:hover .buttonText {
+    left: -10px;
+}
+
+.loginButton:hover .buttonText:after {
+    left: 35px;
+    opacity: 1;
+}
+
+.loginButton:active {
+  opacity: 1;
+}
+
+.loginButton:active .buttonText {
+    top: 3px;
+    color: #dd0000;
+}
+
+.loginButton:active .buttonText:after {
+    color: #dd0000;
+}
+
+.buttonDiv {
+  margin-top:20px;
+  box-shadow: 0 9px #cc3737;
+  width:98px;
+  border-radius:8px;
+}
+
+.buttonDiv:active {
+    box-shadow: 0 2px #ad3030;
+    margin-top: 17px;
+}
