@@ -9,10 +9,15 @@ import '../../node_modules/antd/lib/row/style/css';
 import '../../node_modules/antd/lib/form/style/css'
 import '../../node_modules/antd/lib/input/style/css'
 import '../../node_modules/antd/lib/table/style/css'
+import '../../node_modules/antd/lib/calendar/style/css'
+import '../../node_modules/antd/lib/alert/style/css'
+import '../../node_modules/antd/lib/modal/style/css'
+
 import './navbarHome.css';
 import MeterReader from '../meterReader/meterReader';
 import Managerment from '../managerment/managerment';
 import ThreePage from '../threePage/threePage';
+import WorkCalender from '../workCalender/workCalender';
 
 import { Layout, Menu, Icon ,Button,Row,Col} from 'antd';
 const { Header, Sider, Content } = Layout;
@@ -27,7 +32,8 @@ class NavbarHome extends Component{
             ContextMap:{
                 'meterReader':<MeterReader></MeterReader>,
                 'managerment':<Managerment></Managerment>,
-                'threePage':<ThreePage></ThreePage>
+                'threePage':<ThreePage></ThreePage>,
+                'workCalender':<WorkCalender></WorkCalender>
             }
         };
     }
@@ -72,7 +78,7 @@ class NavbarHome extends Component{
             <Header style={{ background: '#fff', padding: 0,textAlign:'center' }}>
                 <Row>
                     <Col span={6}>
-                        <Button type="primary">Primary</Button>
+                        <Button type="primary" onClick={this.clickButton} value = 'workCalender'>工作日历</Button>
                     </Col>
                     <Col span={6}>
                         <Button type="primary">Primary</Button>
@@ -86,7 +92,7 @@ class NavbarHome extends Component{
                 </Row>
             </Header>
             {/* 框里面的内容 */}
-            <Content style={{ margin: '24px 16px', padding: 24, background: '#fff',overflow: 'initial', minHeight: 280 }}>
+            <Content style={{ margin: '24px 16px 0', padding: 24, background: '#fff',overflow: 'auto', minHeight: 280 }}>
                 {this.state.ContextMap[this.state.MyContext]}
             </Content>
         </Layout>
