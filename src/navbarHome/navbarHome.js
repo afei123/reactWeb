@@ -12,6 +12,7 @@ import '../../node_modules/antd/lib/table/style/css'
 import '../../node_modules/antd/lib/calendar/style/css'
 import '../../node_modules/antd/lib/alert/style/css'
 import '../../node_modules/antd/lib/modal/style/css'
+import '../../node_modules/antd/lib/checkbox/style/css'
 
 import './navbarHome.css';
 import MeterReader from '../meterReader/meterReader';
