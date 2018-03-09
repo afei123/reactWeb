@@ -20,6 +20,7 @@ import Managerment from '../managerment/managerment';
 import ThreePage from '../threePage/threePage';
 import WorkCalender from '../workCalender/workCalender';
 
+import ImportExcel from '../importExcel/importExcel'
 import { Layout, Menu, Icon ,Button,Row,Col} from 'antd';
 const { Header, Sider, Content } = Layout;
 
@@ -28,6 +29,7 @@ class NavbarHome extends Component{
     constructor(){
         super();
         this.state = {
+            visible:false,
             collapsed: false,
             MyContext: 'meterReader',
             ContextMap:{
@@ -50,6 +52,14 @@ class NavbarHome extends Component{
         this.setState({
             MyContext:key
         })
+    }
+    importExcel = () =>{
+        this.setState({
+            visible:true
+        })
+    }
+    componentDidUpdate(){
+        this.state.visible = false;
     }
     render() { 
     return (
@@ -82,7 +92,7 @@ class NavbarHome extends Component{
                         <Button type="primary" onClick={this.clickButton} value = 'workCalender'>工作日历</Button>
                     </Col>
                     <Col span={6}>
-                        <Button type="primary">Primary</Button>
+                        <Button type="primary" onClick={this.importExcel}>导入数据</Button>
                     </Col>
                     <Col span={6}>
                         <Button type="primary" onClick={this.clickButton} value='managerment'>Primary</Button>
@@ -91,6 +101,7 @@ class NavbarHome extends Component{
                         <Button type="primary">Primary</Button>
                     </Col>
                 </Row>
+            <ImportExcel visible = {this.state.visible}/>
             </Header>
             {/* 框里面的内容 */}
             <Content style={{ margin: '24px 16px 0', padding: 24, background: '#fff',overflow: 'auto', minHeight: 280 }}>

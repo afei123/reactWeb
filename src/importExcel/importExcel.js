@@ -1,28 +1,21 @@
 import React , {Component} from 'react'
 import { Modal, Button, Input } from 'antd';
+import UploadExcelForm from './uploadExcelForm'
 import { _saveMonthPlanText } from '../api'
 const { TextArea } = Input;
 
-class MonthlyPlan extends Component{
+class ImportExcel extends Component{
     state = {
         loading: false,
         visible: false,
-        selectedValue: null,
-        monthPlanText: '',
       }
       
       componentWillReceiveProps(nextProps){
           this.state.visible = nextProps.visible
-          this.state.selectedValue = nextProps.selectedValue;
-      }
-      
-      onChangeMonthPlanText = (event) =>{
-          this.setState({monthPlanText : event.target.value})
       }
 
       //antd组件
       handleOk = () => {
-        _saveMonthPlanText(this.state.monthPlanText)
         this.setState({ loading: true });
         setTimeout(() => {
           this.setState({ loading: false, visible: false });
@@ -37,7 +30,7 @@ class MonthlyPlan extends Component{
           <div>
             <Modal
               visible={visible}
-              title="月度计划"
+              title="导入操作"
               onOk={this.handleOk}
               onCancel={this.handleCancel}
               footer={[
@@ -47,12 +40,11 @@ class MonthlyPlan extends Component{
                 </Button>,
               ]}
             >
-              <TextArea value = {this.state.monthPlanText} onChange = {this.onChangeMonthPlanText} rows={4} 
-              placeholder="请输入您的月度计划"/>
+                <UploadExcelForm />
             </Modal>
           </div>
         );
     }
 }
 
-export default MonthlyPlan;
+export default ImportExcel;
