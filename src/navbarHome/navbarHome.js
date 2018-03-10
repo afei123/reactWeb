@@ -21,6 +21,8 @@ import ThreePage from '../threePage/threePage';
 import WorkCalender from '../workCalender/workCalender';
 
 import ImportExcel from '../importExcel/importExcel'
+import {UploadExcel} from '../importExcel/uploadExcelForm'
+
 import { Layout, Menu, Icon ,Button,Row,Col} from 'antd';
 const { Header, Sider, Content } = Layout;
 
@@ -53,13 +55,11 @@ class NavbarHome extends Component{
             MyContext:key
         })
     }
-    importExcel = () =>{
-        this.setState({
-            visible:true
-        })
+    handleCancel = () => {
+        this.setState({ visible: false });
     }
-    componentDidUpdate(){
-        this.state.visible = false;
+    importExcel = () =>{
+        this.setState({visible:true})
     }
     render() { 
     return (
@@ -101,7 +101,9 @@ class NavbarHome extends Component{
                         <Button type="primary">Primary</Button>
                     </Col>
                 </Row>
-            <ImportExcel visible = {this.state.visible}/>
+            <ImportExcel visible = {this.state.visible} handleCancel = {this.handleCancel}>
+                <UploadExcel handleCancel = {this.handleCancel}/>
+            </ImportExcel>
             </Header>
             {/* 框里面的内容 */}
             <Content style={{ margin: '24px 16px 0', padding: 24, background: '#fff',overflow: 'auto', minHeight: 280 }}>

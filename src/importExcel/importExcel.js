@@ -1,33 +1,18 @@
 import React , {Component} from 'react'
-import { Modal, Button, Input } from 'antd';
-import {UploadExcel} from './uploadExcelForm'
-import { _saveMonthPlanText } from '../api'
-const { TextArea } = Input;
+import { Modal} from 'antd';
 
+//是否显示visible 和关闭方法 均有父组件控制
 class ImportExcel extends Component{
-    state = {
-        loading: false,
-        visible: false,
-      }
-      
-      componentWillReceiveProps(nextProps){
-          this.state.visible = nextProps.visible
-      }
-
-      //antd组件
-      handleCancel = () => {
-        this.setState({ visible: false });
-      }
       render() {
-        const { visible, loading } = this.state;
         return (
           <div>
             <Modal
-              visible={visible}
+              visible={this.props.visible}
               title="导入操作"
+              onCancel={this.props.handleCancel}
               footer=""
             >
-                <UploadExcel handleCancel={this.handleCancel}/>
+                {this.props.children}
             </Modal>
           </div>
         );

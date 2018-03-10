@@ -13,8 +13,8 @@ class UploadExcelForm extends Component{
       if (!err) {
         console.log('Received values of form: ', values);
       }
+      this.props.handleCancel();
     });
-    this.props.handleCancel();
   }
   normFile = (e) => {
     console.log('Upload event:', e);
