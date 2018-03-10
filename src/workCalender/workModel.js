@@ -1,51 +1,57 @@
 import React ,{Component} from 'react'
-import { Modal, Button } from 'antd';
-import Worker from './worker';
+import { Modal, Button,Checkbox } from 'antd';
 import {_updateWorkCalenderByMouse} from '../api'
+
+const CheckboxGroup = Checkbox.Group;
+const options = [
+    { label: 'Apple', value: '555' },
+    { label: 'Pear', value: '666' },
+    { label: 'Orange', value: '999' },
+  ];
+
 
 class WorkModel extends Component {
   state = {
     loading: false,
-    visible: false,
     selectedValue: null,
     checkedValues:[],    
   }
   
   componentWillReceiveProps(nextProps){
-      this.state.visible = nextProps.visible
       this.state.selectedValue = nextProps.selectedValue;
-  }
-  _setCheckedValues = (checkedValues) => {
-    this.state.checkedValues = checkedValues;
   }
   //antd组件
   handleOk = () => {
+    if(this.state.checkedValues.length < 1){
+        alert("请选择工作人员")
+    }
+    return
     _updateWorkCalenderByMouse(this.state.selectedValue,this.state.checkedValues)
     this.setState({ loading: true });
     setTimeout(() => {
       this.setState({ loading: false, visible: false });
     }, 3000);
   }
-  handleCancel = () => {
-    this.setState({ visible: false });
+  onChange = (checkedValues) => {
+    this.state.checkedValues = checkedValues;
   }
   render() {
-    const { visible, loading } = this.state;
+    const {loading } = this.state;
     return (
       <div>
         <Modal
-          visible={visible}
+          visible={this.props.visible}
           title="请安排工作人员"
           onOk={this.handleOk}
-          onCancel={this.handleCancel}
+          onCancel={this.props.handleCancel}
           footer={[
-            <Button key="back" onClick={this.handleCancel}>返回</Button>,
+            <Button key="back" onClick={this.props.handleCancel}>返回</Button>,
             <Button key="submit" type="primary" loading={loading} onClick={this.handleOk}>
               提交
             </Button>,
           ]}
         >
-          <Worker setCheckedValues = {this._setCheckedValues}/>
+          <CheckboxGroup options={options} defaultValue={[]} onChange={this.onChange} />
         </Modal>
       </div>
     );

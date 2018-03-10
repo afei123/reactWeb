@@ -24,9 +24,9 @@ class WorkCalender extends Component {
   onPanelChange = (value,mode) => {
     this.setState({ value,mode });
   }
-  componentDidUpdate(){
-      this.state.visible = false;
-  }
+  handleCancel = () => {
+    this.setState({ visible: false });
+  } 
   render() {
     const { value, selectedValue } = this.state;
     return (
@@ -36,8 +36,8 @@ class WorkCalender extends Component {
           <Calendar value={value} onSelect={this.onSelect} onPanelChange={this.onPanelChange} disabledDate = {(currentDate) => {
             return currentDate < moment();
           }} />
-          {this.state.mode==="month" ? <WorkModel visible = {this.state.visible} selectedValue = {this.state.selectedValue}/>:
-          <MonthlyPlan visible = {this.state.visible} selectedValue = {this.state.selectedValue}/>}
+          {this.state.mode==="month" ? <WorkModel visible = {this.state.visible} selectedValue = {this.state.selectedValue} handleCancel = {this.handleCancel}/>:
+          <MonthlyPlan visible = {this.state.visible} selectedValue = {this.state.selectedValue} handleCancel = {this.handleCancel}/>}
         </NavbarHome>
       </div>
     );

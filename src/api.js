@@ -3,6 +3,7 @@ export const _updateWorkCalenderByMouse = (date,worker) => {
     console.log("==================================",date,worker)
 }
 
-export const _saveMonthPlanText = (text) => {
-    alert(text)
+export const _saveMonthPlanText = (date,text) => {
+    alert(date)
+    console.log("==================================",date,text)
 }
