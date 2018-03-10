@@ -1,8 +1,10 @@
-import React , {Component} from 'react'
-import { Upload, Button, Icon, message,Switch,Slider,Select,Form } from 'antd';
-import reqwest from 'reqwest';
+import React , {ReactDOM,Component} from 'react'
+import { Form, Select, InputNumber, Switch, Radio,
+  Slider, Button, Upload, Icon, Rate, } from 'antd';
 const FormItem = Form.Item;
 const Option = Select.Option;
+const RadioButton = Radio.Button;
+const RadioGroup = Radio.Group;
 
 class UploadExcelForm extends Component{
   handleSubmit = (e) => {
@@ -12,6 +14,7 @@ class UploadExcelForm extends Component{
         console.log('Received values of form: ', values);
       }
     });
+    this.props.handleCancel();
   }
   normFile = (e) => {
     console.log('Upload event:', e);
@@ -21,6 +24,7 @@ class UploadExcelForm extends Component{
     return e && e.fileList;
   }
   render() {
+    console.log("=============================",this.props.form)
     const { getFieldDecorator } = this.props.form;
     const formItemLayout = {
       labelCol: { span: 6 },
@@ -50,42 +54,6 @@ class UploadExcelForm extends Component{
             </Select>
           )}
         </FormItem>
-
-        <FormItem
-          {...formItemLayout}
-          label="Select[multiple]"
-        >
-          {getFieldDecorator('select-multiple', {
-            rules: [
-              { required: true, message: 'Please select your favourite colors!', type: 'array' },
-            ],
-          })(
-            <Select mode="multiple" placeholder="Please select favourite colors">
-              <Option value="red">Red</Option>
-              <Option value="green">Green</Option>
-              <Option value="blue">Blue</Option>
-            </Select>
-          )}
-        </FormItem>
-
-        <FormItem
-          {...formItemLayout}
-          label="Switch"
-        >
-          {getFieldDecorator('switch', { valuePropName: 'checked' })(
-            <Switch />
-          )}
-        </FormItem>
-
-        <FormItem
-          {...formItemLayout}
-          label="Slider"
-        >
-          {getFieldDecorator('slider')(
-            <Slider marks={{ 0: 'A', 20: 'B', 40: 'C', 60: 'D', 80: 'E', 100: 'F' }} />
-          )}
-        </FormItem>
-
         <FormItem
           {...formItemLayout}
           label="Upload"
@@ -102,27 +70,6 @@ class UploadExcelForm extends Component{
             </Upload>
           )}
         </FormItem>
-
-        <FormItem
-          {...formItemLayout}
-          label="Dragger"
-        >
-          <div className="dropbox">
-            {getFieldDecorator('dragger', {
-              valuePropName: 'fileList',
-              getValueFromEvent: this.normFile,
-            })(
-              <Upload.Dragger name="files" action="/upload.do">
-                <p className="ant-upload-drag-icon">
-                  <Icon type="inbox" />
-                </p>
-                <p className="ant-upload-text">Click or drag file to this area to upload</p>
-                <p className="ant-upload-hint">Support for a single or bulk upload.</p>
-              </Upload.Dragger>
-            )}
-          </div>
-        </FormItem>
-
         <FormItem
           wrapperCol={{ span: 12, offset: 6 }}
         >
@@ -133,4 +80,4 @@ class UploadExcelForm extends Component{
   }
 }
 
-export default UploadExcelForm;
+export const UploadExcel = Form.create()(UploadExcelForm);
