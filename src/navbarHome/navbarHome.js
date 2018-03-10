@@ -13,12 +13,7 @@ import '../../node_modules/antd/lib/calendar/style/css'
 import '../../node_modules/antd/lib/alert/style/css'
 import '../../node_modules/antd/lib/modal/style/css'
 import '../../node_modules/antd/lib/checkbox/style/css'
-
 import './navbarHome.css';
-import MeterReader from '../meterReader/meterReader';
-import Managerment from '../managerment/managerment';
-import ThreePage from '../threePage/threePage';
-import WorkCalender from '../workCalender/workCalender';
 
 import ImportExcel from '../importExcel/importExcel'
 import {UploadExcel} from '../importExcel/uploadExcelForm'
@@ -33,13 +28,6 @@ class NavbarHome extends Component{
         this.state = {
             visible:false,
             collapsed: false,
-            MyContext: 'meterReader',
-            ContextMap:{
-                'meterReader':<MeterReader></MeterReader>,
-                'managerment':<Managerment></Managerment>,
-                'threePage':<ThreePage></ThreePage>,
-                'workCalender':<WorkCalender></WorkCalender>
-            }
         };
     }
     toggle = () => {
@@ -47,19 +35,14 @@ class NavbarHome extends Component{
             collapsed: !this.state.collapsed,
         });
     }
-    clickButton = (val) =>{
-        this.function({key:val.target.value});
-    }
-    function = ({ item, key, keyPath }) => {
-        this.setState({
-            MyContext:key
-        })
-    }
     handleCancel = () => {
         this.setState({ visible: false });
     }
     importExcel = () =>{
         this.setState({visible:true})
+    }
+    menuOnClick = ({ item, key, keyPath }) =>{
+        window.location.href = key
     }
     render() { 
     return (
@@ -70,12 +53,12 @@ class NavbarHome extends Component{
             collapsed={this.state.collapsed}
         >
             <div className="logo" onClick={this.toggle}/>
-            <Menu onClick={this.function} theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+            <Menu onClick={this.menuOnClick} theme="dark" mode="inline" defaultSelectedKeys={['1']}>
             <Menu.Item key="meterReader" >
                 <Icon type="user" />
                 <span>nav 1</span>
             </Menu.Item>
-            <Menu.Item key="managerment">
+            <Menu.Item key="/managerment">
                 <Icon type="video-camera" />
                 <span>nav 2</span>
             </Menu.Item>
@@ -89,16 +72,16 @@ class NavbarHome extends Component{
             <Header style={{ background: '#fff', padding: 0,textAlign:'center' }}>
                 <Row>
                     <Col span={6}>
-                        <Button type="primary" onClick={this.clickButton} value = 'workCalender'>工作日历</Button>
+                        <Button type="primary" href="/workCalender">工作日历</Button>
                     </Col>
                     <Col span={6}>
                         <Button type="primary" onClick={this.importExcel}>导入数据</Button>
                     </Col>
                     <Col span={6}>
-                        <Button type="primary" onClick={this.clickButton} value='managerment'>Primary</Button>
+                        <Button type="primary" href="/workCalender">待定</Button>
                     </Col>
                     <Col span={6}>
-                        <Button type="primary">Primary</Button>
+                        <Button type="primary">待定</Button>
                     </Col>
                 </Row>
             <ImportExcel visible = {this.state.visible} handleCancel = {this.handleCancel}>

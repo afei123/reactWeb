@@ -4,6 +4,7 @@ import moment from 'moment';
 import 'moment/locale/zh-cn';
 import WorkModel from './workModel';
 import MonthlyPlan from './monthlyPlan';
+import NavbarHome from '../navbarHome/navbarHome'
 moment.locale('zh-cn');
 
 class WorkCalender extends Component {
@@ -30,12 +31,14 @@ class WorkCalender extends Component {
     const { value, selectedValue } = this.state;
     return (
       <div>
-        <Alert message={`您当前选择的日期为: ${selectedValue && selectedValue.format('YYYY-MM-DD')}`} />
-        <Calendar value={value} onSelect={this.onSelect} onPanelChange={this.onPanelChange} disabledDate = {(currentDate) => {
-          return currentDate < moment();
-        }} />
-        {this.state.mode==="month" ? <WorkModel visible = {this.state.visible} selectedValue = {this.state.selectedValue}/>:
-        <MonthlyPlan visible = {this.state.visible} selectedValue = {this.state.selectedValue}/>}
+        <NavbarHome>
+          <Alert message={`您当前选择的日期为: ${selectedValue && selectedValue.format('YYYY-MM-DD')}`} />
+          <Calendar value={value} onSelect={this.onSelect} onPanelChange={this.onPanelChange} disabledDate = {(currentDate) => {
+            return currentDate < moment();
+          }} />
+          {this.state.mode==="month" ? <WorkModel visible = {this.state.visible} selectedValue = {this.state.selectedValue}/>:
+          <MonthlyPlan visible = {this.state.visible} selectedValue = {this.state.selectedValue}/>}
+        </NavbarHome>
       </div>
     );
   }

@@ -1,4 +1,5 @@
 import React , { Component } from 'react'
+import NavbarHome from '../navbarHome/navbarHome'
 
 class ThreePage extends Component{
     constructor(){
@@ -6,9 +7,11 @@ class ThreePage extends Component{
     }
     render(){
         return(
-            <div>
+        <div >
+            <NavbarHome>
             threePage
-            </div>
+            </NavbarHome>
+        </div>
        )
     }
 }
