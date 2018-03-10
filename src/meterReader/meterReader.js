@@ -1,9 +1,12 @@
 import React ,{Component} from 'react'
+import NavbarHome from '../navbarHome/navbarHome'
 
 class MeterReader extends Component{
     render(){
-        return <div>
-            meterReader页面
+        return <div style={{height:"100%"}}>
+            <NavbarHome>
+                meterReader页面
+            </NavbarHome>
         </div>
     }
 }

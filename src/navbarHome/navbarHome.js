@@ -79,7 +79,7 @@ class NavbarHome extends Component{
                 <Icon type="video-camera" />
                 <span>nav 2</span>
             </Menu.Item>
-            <Menu.Item key="threePage">
+            <Menu.Item key="threePage" href="/#/threePage">
                 <Icon type="upload" />
                 <span>nav 3</span>
             </Menu.Item>
@@ -107,7 +107,7 @@ class NavbarHome extends Component{
             </Header>
             {/* 框里面的内容 */}
             <Content style={{ margin: '24px 16px 0', padding: 24, background: '#fff',overflow: 'auto', minHeight: 280 }}>
-                {this.state.ContextMap[this.state.MyContext]}
+                {this.props.children}
             </Content>
         </Layout>
         </Layout>

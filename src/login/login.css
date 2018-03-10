@@ -5,7 +5,7 @@ html,body{
   height:100%
 }
 .App-login {
-  background:url(../src/image/login.png) no-repeat;
+  background:url(../../src/image/login.png) no-repeat;
   background-size: cover;
   height: 100%;
   width: 100%;
