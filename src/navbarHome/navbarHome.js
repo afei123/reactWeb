@@ -13,6 +13,8 @@ import '../../node_modules/antd/lib/calendar/style/css'
 import '../../node_modules/antd/lib/alert/style/css'
 import '../../node_modules/antd/lib/modal/style/css'
 import '../../node_modules/antd/lib/checkbox/style/css'
+import '../../node_modules/antd/lib/date-picker/style/css'
+import '../../node_modules/antd/lib/select/style/css'
 import './navbarHome.css';
 
 import ImportExcel from '../importExcel/importExcel'
@@ -60,11 +62,11 @@ class NavbarHome extends Component{
             </Menu.Item>
             <Menu.Item key="/managerment">
                 <Icon type="video-camera" />
-                <span>nav 2</span>
+                <span>账单管理</span>
             </Menu.Item>
-            <Menu.Item key="threePage" href="/#/threePage">
+            <Menu.Item key="/jobDetails">
                 <Icon type="upload" />
-                <span>nav 3</span>
+                <span>详细工作安排</span>
             </Menu.Item>
             </Menu>
         </Sider>
