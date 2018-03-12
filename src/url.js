@@ -11,7 +11,7 @@ import WorkCalender from './workCalender/workCalender'
 import WorkPlanDetails from './workPlanDetails/workPlanDetails'
 import Worker from './worker/worker'
 
-const BasicExample = () => (
+const URL = () => (
   <Router>
     <div style={{height:'100%'}}>
       <Route exact path="/" component={Login}/>
@@ -23,4 +23,4 @@ const BasicExample = () => (
     </div>
   </Router>
 )
-export default BasicExample
+export default URL
