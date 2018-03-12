@@ -9,6 +9,7 @@ import Login from './login/login'
 import Managerment from './managerment/managerment'
 import WorkCalender from './workCalender/workCalender'
 import WorkPlanDetails from './workPlanDetails/workPlanDetails'
+import Worker from './worker/worker'
 
 const BasicExample = () => (
   <Router>
@@ -18,6 +19,7 @@ const BasicExample = () => (
       <Route path="/managerment" component={Managerment}/>
       <Route path="/workCalender" component={WorkCalender}/>
       <Route path="/workPlanDetails" component={WorkPlanDetails}/>
+      <Route path="/worker" component={Worker}/>
     </div>
   </Router>
 )

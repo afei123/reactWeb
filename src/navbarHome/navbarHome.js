@@ -56,9 +56,9 @@ class NavbarHome extends Component{
         >
             <div className="logo" onClick={this.toggle}/>
             <Menu onClick={this.menuOnClick} theme="dark" mode="inline" defaultSelectedKeys={['1']}>
-            <Menu.Item key="meterReader" >
+            <Menu.Item key="/worker" >
                 <Icon type="user" />
-                <span>nav 1</span>
+                <span>账户管理</span>
             </Menu.Item>
             <Menu.Item key="/managerment">
                 <Icon type="video-camera" />

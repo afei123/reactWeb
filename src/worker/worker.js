@@ -1,7 +1,7 @@
 import React ,{Component} from 'react'
 import NavbarHome from '../navbarHome/navbarHome'
 
-class MeterReader extends Component{
+class Worker extends Component{
     render(){
         return <div style={{height:"100%"}}>
             <NavbarHome>
@@ -11,4 +11,4 @@ class MeterReader extends Component{
     }
 }
 
-export default MeterReader;
+export default Worker;
