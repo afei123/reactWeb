@@ -1,6 +1,8 @@
 import React ,{Component} from 'react'
 import './workPlanDetails.css'
 import { Form, Row, Col, Input, Button, Icon,DatePicker,Select  } from 'antd';
+import {DistrictSelect} from '../common/commonComponents'
+import moment from 'moment';
 const { Option, OptGroup } = Select;
 const { RangePicker } = DatePicker;
 
@@ -11,13 +13,44 @@ const districts = [{name:"nihao",id:"1"}]
 const FormButtonStyle = {marginLeft:10}
 
 class SearchInputForm extends Component{
+    constructor(){
+      super()
+      this.state = {startDate:null,endDate:null}
+    }
+    _onStartChange = (value) => {
+      this._onChange('startDate', value);
+    }
+  
+    _onEndChange = (value) => {
+      this._onChange('endDate', value);
+    }
+    _onChange = (field, value) => {
+      this.setState({
+        [field]: value,
+      });
+    }
+    _disabledStartDate = (startDate) => {
+      const endDate = this.state.endDate;
+      if (!startDate || !endDate) {
+        return false;
+      }
+      return startDate.valueOf() > endDate.valueOf();
+    }
+  
+    _disabledEndDate = (endDate) => {
+      const startDate = this.state.startDate;
+      if (!endDate || !startDate) {
+        return false;
+      }
+      return endDate.valueOf() <= startDate.valueOf();
+    }
+    //点击搜索摁钮后触发的方法
       handleSearch = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
-          console.log('Received values of form: ', values);
+          console.log('============================================', values);
         });
       }
-    
       handleReset = () => {
         this.props.form.resetFields();
       }
@@ -25,7 +58,7 @@ class SearchInputForm extends Component{
         const { getFieldDecorator } = this.props.form;
         const children = [];
         children.push(
-          <Col span={8} key="userName" style={{ display:'block' }}>
+          <Col span={6} key="userName" style={{ display:'block' }}>
             <FormItem label='工作人员姓名'>
               {getFieldDecorator('userName')(
                 <Input />
@@ -34,26 +67,25 @@ class SearchInputForm extends Component{
           </Col>
         );
         children.push(
-          <Col span={8} key="district" style={{ display:'block' }}>
-            <FormItem label='小区'>
-              {getFieldDecorator('district')(
-                <Select style={{ width: 200 }}>
-                  {districts.map(dis => {
-                    return(<Option key={dis.id} value={dis.id}>{dis.name}</Option>)
-                  })}
-                </Select>
+          <Col span={6} key="workDateStart" style={{ display:'block' }}>
+            <FormItem label='工作开始日期'>
+              {getFieldDecorator('workDateStart')(
+                <DatePicker placeholder="Start" onChange={this._onStartChange}  disabledDate={this._disabledStartDate}/>
               )}
             </FormItem>
           </Col>
         );
         children.push(
-          <Col span={8} key="workDate" style={{ display:'block' }}>
-            <FormItem label='工作日期'>
-              {getFieldDecorator('workDate')(
-                <RangePicker />
+          <Col span={6} key="workDateEnd" style={{ display:'block' }}>
+            <FormItem label='工作结束日期'>
+              {getFieldDecorator('workDateEnd')(
+                <DatePicker placeholder="End" onChange={this._onEndChange}  disabledDate={this._disabledEndDate}/>
               )}
             </FormItem>
           </Col>
+        );
+        children.push(
+          <DistrictSelect key="district" getFieldDecorator = {getFieldDecorator}/>
         );
         return children;
       }

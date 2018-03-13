@@ -1,5 +1,6 @@
 import React,{Component} from 'react'
 import { Modal, Button } from 'antd';
+import {DistrictSelect} from '../common/commonComponents'
 
 class WorkPlan extends Component{
     state = {
@@ -15,7 +16,6 @@ class WorkPlan extends Component{
             });
         }, 2000);
     }
-    
     render() {
     const { confirmLoading } = this.state;
     return (
@@ -26,7 +26,6 @@ class WorkPlan extends Component{
             onCancel={this.props.handleCancel}
             footer = ""
         >
-            
         </Modal>
         </div>
     );
