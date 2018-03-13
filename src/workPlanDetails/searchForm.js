@@ -1,14 +1,10 @@
 import React ,{Component} from 'react'
 import './workPlanDetails.css'
-import { Form, Row, Col, Input, Button, Icon,DatePicker,Select  } from 'antd';
-import {DistrictSelect} from '../common/commonComponents'
+import { Form, Row, Col,Button, Icon,DatePicker} from 'antd';
+import {DistrictSelect,WorkerName} from '../common/commonComponents'
 import moment from 'moment';
-const { Option, OptGroup } = Select;
 const { RangePicker } = DatePicker;
-
 const FormItem = Form.Item;
-
-const districts = [{name:"nihao",id:"1"}]
 
 const FormButtonStyle = {marginLeft:10}
 
@@ -58,15 +54,6 @@ class SearchInputForm extends Component{
         const { getFieldDecorator } = this.props.form;
         const children = [];
         children.push(
-          <Col span={6} key="userName" style={{ display:'block' }}>
-            <FormItem label='工作人员姓名'>
-              {getFieldDecorator('userName')(
-                <Input />
-              )}
-            </FormItem>
-          </Col>
-        );
-        children.push(
           <Col span={6} key="workDateStart" style={{ display:'block' }}>
             <FormItem label='工作开始日期'>
               {getFieldDecorator('workDateStart')(
@@ -85,7 +72,10 @@ class SearchInputForm extends Component{
           </Col>
         );
         children.push(
-          <DistrictSelect key="district" getFieldDecorator = {getFieldDecorator}/>
+          <DistrictSelect key="district" span={6} getFieldDecorator = {getFieldDecorator}/>
+        );
+        children.push(
+          <WorkerName key="workerName" span={6} getFieldDecorator = {getFieldDecorator}/>
         );
         return children;
       }

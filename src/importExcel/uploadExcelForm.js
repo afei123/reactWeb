@@ -40,7 +40,7 @@ class UploadExcelForm extends Component{
         </FormItem>
         <FormItem
           {...formItemLayout}
-          label="Select"
+          label="小区"
           hasFeedback
         >
           {getFieldDecorator('select', {

@@ -64,7 +64,7 @@ class NavbarHome extends Component{
                 <Icon type="video-camera" />
                 <span>账单管理</span>
             </Menu.Item>
-            <Menu.Item key="/jobDetails">
+            <Menu.Item key="/workPlanDetails">
                 <Icon type="upload" />
                 <span>详细工作安排</span>
             </Menu.Item>
