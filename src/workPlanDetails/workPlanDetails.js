@@ -4,6 +4,7 @@ import SearchForm from './searchForm'
 import SearchTable from './searchTable'
 import WorkPlan from './workPlan';
 import {Button} from 'antd'
+import {_searchWorkPlan} from '../api'
 
 const FormButtonStyle = {marginLeft:10}
 
@@ -15,6 +16,11 @@ class WorkPlanDetails extends Component{
             pageName:"",
             workPlanList:[],
             workPlan:{},
+            searchWorkPlanDto:{
+                workerId:0,
+                districtId:0,
+                isOk:false,
+            }
         }
     }
     componentWillMount(){
@@ -25,16 +31,9 @@ class WorkPlanDetails extends Component{
     }
     _getData = () => {
         const {workPlanList} = this.state;
-        const data = [];
-        for (let i = 0; i < 46; i++) {
-          data.push({
-            id: i,
-            name:i,
-            age: i,
-            address: <a key={i} onClick = {() => this._updateWorkPlanPage(i)}>编辑</a>,
-          });
-        }
-        this.setState({workPlanList:data})
+        _searchWorkPlan(this.state.searchWorkPlanDto,(result)=>{
+            this.setState({workPlanList:result})
+        })
     }
     _newWorkPlanPage = () => {
         this.setState({visible:true,pageName:"新建"})

@@ -2,14 +2,23 @@ import React ,{Component} from 'react'
 import { Table } from 'antd';
 
 const columns = [{
-  title: 'Name',
-  dataIndex: 'name',
+  title: '工作人员',
+  dataIndex: 'workerName',
 }, {
-  title: 'Age',
-  dataIndex: 'age',
+  title: '工作地点',
+  dataIndex: 'districtName',
 }, {
-  title: 'Address',
-  dataIndex: 'address',
+  title: '开始时间',
+  dataIndex: 'beginDate',
+}, {
+  title: '结束时间',
+  dataIndex: 'endDate',
+}, {
+  title: '详情',
+  dataIndex: 'detail',
+}, {
+  title: '是否完成',
+  dataIndex: 'isOk',
 }];
 
 

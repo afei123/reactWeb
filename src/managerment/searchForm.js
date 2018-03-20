@@ -14,6 +14,7 @@ class SearchInputForm extends Component{
     handleSearch = (e) => {
         e.preventDefault();
         this.props.form.validateFields((err, values) => {
+          this.props.setSearchDto(values)
           console.log('Received values of form: ', values);
         });
       }
@@ -31,17 +32,24 @@ class SearchInputForm extends Component{
         const count = this.state.expand ? 10 : 6;
         const { getFieldDecorator } = this.props.form;
         const children = [];
-        for (let i = 0; i < 10; i++) {
-          children.push(
-            <Col span={8} key={i} style={{ display: i < count ? 'block' : 'none' }}>
-              <FormItem label={`Field ${i}`}>
-                {getFieldDecorator(`field-${i}`)(
-                  <Input placeholder="placeholder" />
-                )}
-              </FormItem>
-            </Col>
-          );
-        }
+        children.push(
+          <Col span={8} key={"waterMeterId"} style={{ display: 1 < count ? 'block' : 'none' }}>
+            <FormItem label={"水表号"}>
+              {getFieldDecorator(`waterMeterId`)(
+                <Input placeholder="请输入水表号" />
+              )}
+            </FormItem>
+          </Col>
+        );
+        children.push(
+          <Col span={8} key={"phone"} style={{ display: 2 < count ? 'block' : 'none' }}>
+            <FormItem label={"手机号"}>
+              {getFieldDecorator(`phone`)(
+                <Input placeholder="请输入手机号" />
+              )}
+            </FormItem>
+          </Col>
+        );
         return children;
       }
     
@@ -54,13 +62,10 @@ class SearchInputForm extends Component{
             <Row gutter={24}>{this.getFields()}</Row>
             <Row>
               <Col span={24} style={{ textAlign: 'right' }}>
-                <Button type="primary" htmlType="submit">Search</Button>
+                <Button type="primary" htmlType="submit">查询</Button>
                 <Button style={{ marginLeft: 8 }} onClick={this.handleReset}>
-                  Clear
+                  重置
                 </Button>
-                <a style={{ marginLeft: 8, fontSize: 12 }} onClick={this.toggle}>
-                  Collapse <Icon type={this.state.expand ? 'up' : 'down'} />
-                </a>
               </Col>
             </Row>
           </Form>

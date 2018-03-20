@@ -3,7 +3,15 @@ import {Form, Row, Col, Modal, Button,DatePicker,Input } from 'antd';
 import {DistrictSelect,WorkerName,WorkDate} from '../common/commonComponents'
 const {RangePicker} = DatePicker
 const FormButtonStyle = {marginLeft:10}
-
+const FormItem = Form.Item;
+const formItemLayout = {
+    labelCol: {
+        lg: { span: 4},
+      },
+      wrapperCol: {
+        lg: { span: 20},
+      },
+  };
 class WorkPlanForm extends Component{
     handleSearch = (e) => {
         e.preventDefault();
@@ -19,6 +27,16 @@ class WorkPlanForm extends Component{
                 <DistrictSelect  span={10} getFieldDecorator = {getFieldDecorator}/>
                 <Col  span={2}/>
                 <WorkerName  span={12}  getFieldDecorator = {getFieldDecorator}/>
+            </Row>);
+        children.push(  
+            <Row gutter={12} key="FieldTwo">
+                <Col span={this.props.span} style={this.props.style}>
+                    <FormItem {...formItemLayout} label='工作详情'>
+                    {getFieldDecorator('detail')(
+                        <Input />
+                    )}
+                    </FormItem>
+                </Col>
             </Row>);
         return children;
       }

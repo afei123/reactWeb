@@ -2,25 +2,35 @@ import React ,{Component} from 'react'
 import { Table } from 'antd';
 
 const columns = [{
-  title: 'Name',
-  dataIndex: 'name',
+  title: '手机号',
+  dataIndex: 'phone',
+  key: 'phone'
 }, {
-  title: 'Age',
-  dataIndex: 'age',
+  title: '水表号',
+  dataIndex: 'waterMeterId',
+  key: 'waterMeterId'
 }, {
-  title: 'Address',
-  dataIndex: 'address',
+  title: '用水量',
+  dataIndex: 'useWater',
+  key: 'useWater'
+}, {
+  title: '抄表员',
+  dataIndex: 'workerName',
+  key: 'workerName'
+}, {
+  title: '花费',
+  dataIndex: 'spend',
+  key: 'spend'
+}, {
+  title: '余额',
+  dataIndex: 'gold',
+  key: 'gold'
+}, {
+  title: '日期',
+  dataIndex: 'date',
+  key: 'date'
 }];
 
-const data = [];
-for (let i = 0; i < 46; i++) {
-  data.push({
-    key: i,
-    name: `Edward King ${i}`,
-    age: 32,
-    address: `London, Park Lane no. ${i}`,
-  });
-}
 
 class SearchTable extends Component {
   state = {
@@ -36,7 +46,7 @@ class SearchTable extends Component {
         pageSize: 10
     }
     return (
-      <Table columns={columns} dataSource={data} pagination={pagination}/>
+      <Table columns={columns} dataSource={this.props.dataSource} pagination={pagination} rowKey = 'date'/>
     );
   }
 }

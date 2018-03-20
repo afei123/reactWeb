@@ -1,20 +1,34 @@
 import React , {ReactDOM,Component} from 'react'
 import { Form, Select, InputNumber, Switch, Radio,
   Slider, Button, Upload, Icon, Rate, } from 'antd';
+import {_ImportWaterBillExcel} from '../api'
 const FormItem = Form.Item;
 const Option = Select.Option;
 const RadioButton = Radio.Button;
 const RadioGroup = Radio.Group;
 
 class UploadExcelForm extends Component{
-  handleSubmit = (e) => {
-    e.preventDefault();
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
-      }
-      this.props.handleCancel();
+  constructor(){
+    super();
+    this.state = {
+      select : "select",
+      file : null,
+      loading:false,
+    }
+  }
+  handleSubmit = () => {
+    this.setState({loading:true});
+    const { file,select } = this.state;
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('select',select);
+    _ImportWaterBillExcel(formData,()=>{
+      this.setState({loading:false});
+      this.props.handleCancel();    
     });
+  }
+  handleSelectChange = (value) =>{
+    this.state.select = value
   }
   normFile = (e) => {
     console.log('Upload event:', e);
@@ -24,7 +38,6 @@ class UploadExcelForm extends Component{
     return e && e.fileList;
   }
   render() {
-    console.log("=============================",this.props.form)
     const { getFieldDecorator } = this.props.form;
     const formItemLayout = {
       labelCol: { span: 6 },
@@ -34,38 +47,35 @@ class UploadExcelForm extends Component{
       <Form onSubmit={this.handleSubmit}>
         <FormItem
           {...formItemLayout}
-          label="Plain Text"
-        >
-          <span className="ant-form-text">China</span>
-        </FormItem>
-        <FormItem
-          {...formItemLayout}
-          label="小区"
+          label="导入类型"
           hasFeedback
         >
           {getFieldDecorator('select', {
             rules: [
-              { required: true, message: 'Please select your country!' },
+              { required: true, message: '请选择导入类型' },
             ],
           })(
-            <Select placeholder="Please select a country">
-              <Option value="china">China</Option>
-              <Option value="use">U.S.A</Option>
+            <Select placeholder="请选择导入类型" onChange={this.handleSelectChange}>
+              <Option value="waterBill">水费账单</Option>
+              <Option value="workCalender">工作日历</Option>
             </Select>
           )}
         </FormItem>
         <FormItem
           {...formItemLayout}
-          label="Upload"
-          extra="longgggggggggggggggggggggggggggggggggg"
+          label="上传excel"
+          extra="请选择要上传的excel"
         >
           {getFieldDecorator('upload', {
             valuePropName: 'fileList',
             getValueFromEvent: this.normFile,
           })(
-            <Upload name="logo" action="/upload.do" listType="picture">
+            <Upload name="file" beforeUpload = {(file) => {
+              this.state.file = file
+              return false;
+            }} listType="text">
               <Button>
-                <Icon type="upload" /> Click to upload
+                <Icon type="upload" /> 请选择上传文件
               </Button>
             </Upload>
           )}
@@ -73,7 +83,7 @@ class UploadExcelForm extends Component{
         <FormItem
           wrapperCol={{ span: 12, offset: 6 }}
         >
-          <Button type="primary" htmlType="submit">Submit</Button>
+          <Button type="primary" onClick={this.handleSubmit} className="upload-demo-start" loading={this.state.loading}>上传</Button>
         </FormItem>
       </Form>
     );

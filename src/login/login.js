@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './login.css';
-
+import {_login} from '../api'
+import swal from 'sweetalert'
 class Login extends Component {
   constructor(){
     super();
@@ -28,10 +29,24 @@ class Login extends Component {
     this.state.remberPassWord = !this.state.remberPassWord;
   }
   login(){
+    let {userName,passWord} = this.state;
     if(this.state.remberPassWord){
-      localStorage.setItem("userName",this.state.userName)
-      localStorage.setItem("passWord",this.state.passWord)
+      localStorage.setItem("userName",userName)
+      localStorage.setItem("passWord",passWord)
     }
+    _login(userName,passWord,(result)=>{
+        console.log(result.message)
+        if(result.message === null){
+            window.location.href = "/managerment"
+        }else{
+            swal({ 
+                title: "", 
+                text: result.message, 
+                icon: "warning",
+                button: "OK"
+            })
+        }
+    });
   }
   render() {
     return (

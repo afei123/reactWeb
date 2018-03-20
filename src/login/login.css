@@ -23,13 +23,16 @@ html,body{
   text-align: center;
 }
 .message{
+  color:black;
   width:150px;
   height:18px;
   border-radius: 5px;
   outline:none;
   border:black solid 1px
 }
-
+.swal-footer {
+  text-align: center
+}
 .btn-success {
   background-color: #306195;
   border-color: #306195;
@@ -96,7 +99,7 @@ html,body{
 .buttonDiv {
   margin-top:20px;
   box-shadow: 0 9px #cc3737;
-  width:98px;
+  width:106px;
   border-radius:8px;
 }
 
